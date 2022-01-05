@@ -1,6 +1,6 @@
 import createSagaMiddleware from '@redux-saga/core';
 import {configureStore, MiddlewareArray} from '@reduxjs/toolkit';
-import homeReducer from '../../screens/Home/slice/index';
+import homeReducer from '../app/Home/slice/index';
 import {Middleware} from 'redux';
 import rootSaga from '../sagas/index';
 

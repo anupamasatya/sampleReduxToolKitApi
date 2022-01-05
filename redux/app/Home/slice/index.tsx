@@ -1,6 +1,6 @@
-import {RootState} from './../../../redux/store/index';
+import {RootState} from '../../../store/index';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {UserResponseError, DataResponse} from '../../../redux/types/index';
+import {UserResponseError, DataResponse} from '../../../types/index';
 
 export const initialState: any = {
   isLoading: false,

@@ -3,8 +3,8 @@ import {PayloadAction} from '@reduxjs/toolkit';
 import {AxiosProps} from '../../../type';
 
 import {AxiosResponse} from 'axios';
-import {requestApi} from '../../../config/axios';
-import {} from '../../../redux/types/index';
+import {requestApi} from '../../../../config/axios';
+import {} from '../../../types/index';
 import {userDataReq, userSuccess, userError} from '../slice/index';
 
 function* getUserData(_action: PayloadAction<any>): SagaReturnType<any> {

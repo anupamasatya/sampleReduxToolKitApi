@@ -11,6 +11,9 @@ import React from 'react';
 import type {Node} from 'react';
 import {
   FlatList,
+  NativeEventEmitter,
+  NativeModules,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -18,19 +21,70 @@ import {
   Text,
   View,
 } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect, useState} from 'react';
-import {userDataReq, selectUserInfo} from './slice';
+import {userDataReq, selectUserInfo} from '../../redux/app/Home/slice';
 import {RootState} from '../../redux/store';
+import {isPending} from '@reduxjs/toolkit';
 
 const HomeScreen: () => Node = () => {
+  const [idBiometricEnabled, setIdBiometricEnabled] = useState(false);
   var dispatch = useDispatch();
+  var object: any = [
+    {name: 'anupama', age: 30},
+    {name: 'Chahath', age: 4},
+  ];
+
   useEffect(() => {
+    authenticateDevice();
     var params = {email: 'some email', password: '1234'};
+    console.log('status of biometric id in useeffect', idBiometricEnabled);
 
     dispatch(userDataReq(params));
+    storeData();
   }, [dispatch]);
+  var storeData = async () => {
+    try {
+      const jsonValue = JSON.stringify(object);
+
+      await AsyncStorage.setItem('Anupama', jsonValue);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const objectData = await AsyncStorage.getItem('Anupama');
+      console.log('get data returns:', objectData);
+      return objectData != null ? JSON.parse(objectData) : null;
+    } catch (e) {
+      // error reading value
+    }
+  };
+  async function authenticateDevice() {
+    //console.log(idBiometricEnabled);
+    if (idBiometricEnabled) {
+      NativeModules.SecurityModule.authenticateDevice();
+      const eventEmitter = new NativeEventEmitter(NativeModules.SecurityModule);
+      eventEmitter.addListener('SecurityAuth', event => {
+        /**Get biometric status enabled/disabled from native module */
+        var n1 = event.eventProperty.localeCompare(
+          'E_AUTH_NOT_RECOGNIZED_SUCCESS',
+        );
+        /**If not authorized user then exist the app */
+        // if (n1 === 0) {
+        //   RNExitApp.exitApp();
+        //   //Platform.OS === STRINGS.IOS ? authenticateDevice() : BackHandler.exitApp();
+        // }
+      });
+      /**Remove the NativeEventEmitter listener */
+      return function cleanup() {
+        eventEmitter.removeAllListeners('SecurityAuth');
+      };
+    }
+  }
 
   const {isLoading, DataResponse, userResponseError} = useSelector(
     (state: RootState) => state.home,
@@ -54,6 +108,11 @@ const HomeScreen: () => Node = () => {
       </View>
     );
   };
+  var enableBioMetricMethod = () => {
+    // setIdBiometricEnabled(true);
+    // console.log('status of biometric id', idBiometricEnabled);
+    getData();
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <StatusBar barStyle={'light-content'} />
@@ -62,6 +121,10 @@ const HomeScreen: () => Node = () => {
           flex: 1,
           borderWidth: 5,
         }}>
+        <Pressable onPress={() => enableBioMetricMethod()}>
+          <Text>{'BIOMETRIC ENABLED :'}</Text>
+          <Text>{idBiometricEnabled}</Text>
+        </Pressable>
         <FlatList data={DataResponse?.Data || []} renderItem={renderItem} />
       </View>
     </SafeAreaView>

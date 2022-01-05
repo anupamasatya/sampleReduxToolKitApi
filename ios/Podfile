@@ -12,6 +12,8 @@ target 'reduxSliceSample' do
     :hermes_enabled => false
   )
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'reduxSliceSampleTests' do
     inherit! :complete
     # Pods for testing
