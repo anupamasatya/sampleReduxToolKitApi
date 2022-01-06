@@ -27,23 +27,24 @@ import {useEffect, useState} from 'react';
 import {userDataReq, selectUserInfo} from '../../redux/app/Home/slice';
 import {RootState} from '../../redux/store';
 import {isPending} from '@reduxjs/toolkit';
+import {isEnableBioMetric} from '../../redux/app/Auth/slice';
 
 const HomeScreen: () => Node = () => {
-  const [idBiometricEnabled, setIdBiometricEnabled] = useState(false);
   var dispatch = useDispatch();
-  var object: any = [
-    {name: 'anupama', age: 30},
-    {name: 'Chahath', age: 4},
-  ];
+  // var object: any = [
+  //   {name: 'anupama', age: 30},
+  //   {name: 'Chahath', age: 4},
+  // ];
+  const {isBioMetricEnabled} = useSelector((state: RootState) => state.auth);
+  console.log('status of biometric id', isBioMetricEnabled);
 
   useEffect(() => {
     authenticateDevice();
     var params = {email: 'some email', password: '1234'};
-    console.log('status of biometric id in useeffect', idBiometricEnabled);
-
     dispatch(userDataReq(params));
-    storeData();
+    //storeData();
   }, [dispatch]);
+
   var storeData = async () => {
     try {
       const jsonValue = JSON.stringify(object);
@@ -64,8 +65,8 @@ const HomeScreen: () => Node = () => {
     }
   };
   async function authenticateDevice() {
-    //console.log(idBiometricEnabled);
-    if (idBiometricEnabled) {
+    console.log(isBioMetricEnabled);
+    if (isBioMetricEnabled) {
       NativeModules.SecurityModule.authenticateDevice();
       const eventEmitter = new NativeEventEmitter(NativeModules.SecurityModule);
       eventEmitter.addListener('SecurityAuth', event => {
@@ -85,7 +86,6 @@ const HomeScreen: () => Node = () => {
       };
     }
   }
-
   const {isLoading, DataResponse, userResponseError} = useSelector(
     (state: RootState) => state.home,
   );
@@ -111,7 +111,8 @@ const HomeScreen: () => Node = () => {
   var enableBioMetricMethod = () => {
     // setIdBiometricEnabled(true);
     // console.log('status of biometric id', idBiometricEnabled);
-    getData();
+    // getData();
+    dispatch(isEnableBioMetric());
   };
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -123,7 +124,7 @@ const HomeScreen: () => Node = () => {
         }}>
         <Pressable onPress={() => enableBioMetricMethod()}>
           <Text>{'BIOMETRIC ENABLED :'}</Text>
-          <Text>{idBiometricEnabled}</Text>
+          <Text>{isBioMetricEnabled}</Text>
         </Pressable>
         <FlatList data={DataResponse?.Data || []} renderItem={renderItem} />
       </View>

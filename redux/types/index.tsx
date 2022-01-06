@@ -22,3 +22,6 @@ export type AxiosProps = {
   params?: any;
   header?: any;
 };
+export type AuthResponse = {
+  authData: any;
+};
