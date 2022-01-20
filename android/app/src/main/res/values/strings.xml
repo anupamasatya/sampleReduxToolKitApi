@@ -1,7 +1,7 @@
 <resources>
  <string name="app_name">sampleReducToolKitApi</string>
     
-<string name="unlock">Unlock sample ANUPAMA App</string>
+<string name="unlock">Unlock sample niyaz App</string>
 
 <string name="confirm_pattern">Confirm your screen lock pattern, PIN, password or fingerprint</string>
 

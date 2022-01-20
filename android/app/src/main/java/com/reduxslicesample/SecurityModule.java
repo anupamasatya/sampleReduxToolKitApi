@@ -1,4 +1,4 @@
-package com.demotypescript;
+package com.reduxslicesample;
 
 import android.app.Activity;
 import android.app.KeyguardManager;

@@ -1,4 +1,4 @@
-package com.demotypescript;
+package com.reduxslicesample;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;

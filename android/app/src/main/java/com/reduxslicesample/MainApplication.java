@@ -1,4 +1,4 @@
-package com.reduxslicesample;
+package com. reduxslicesample;
 
 import android.app.Application;
 import android.content.Context;
