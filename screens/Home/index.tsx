@@ -65,26 +65,26 @@ const HomeScreen: () => Node = () => {
     }
   };
   async function authenticateDevice() {
-    console.log(isBioMetricEnabled);
-    if (isBioMetricEnabled) {
-      NativeModules.SecurityModule.authenticateDevice();
-      const eventEmitter = new NativeEventEmitter(NativeModules.SecurityModule);
-      eventEmitter.addListener('SecurityAuth', event => {
-        /**Get biometric status enabled/disabled from native module */
-        var n1 = event.eventProperty.localeCompare(
-          'E_AUTH_NOT_RECOGNIZED_SUCCESS',
-        );
-        /**If not authorized user then exist the app */
-        // if (n1 === 0) {
-        //   RNExitApp.exitApp();
-        //   //Platform.OS === STRINGS.IOS ? authenticateDevice() : BackHandler.exitApp();
-        // }
-      });
-      /**Remove the NativeEventEmitter listener */
-      return function cleanup() {
-        eventEmitter.removeAllListeners('SecurityAuth');
-      };
-    }
+    // console.log(isBioMetricEnabled);
+    // if (isBioMetricEnabled) {
+    NativeModules.SecurityModule.authenticateDevice();
+    const eventEmitter = new NativeEventEmitter(NativeModules.SecurityModule);
+    eventEmitter.addListener('SecurityAuth', event => {
+      /**Get biometric status enabled/disabled from native module */
+      var n1 = event.eventProperty.localeCompare(
+        'E_AUTH_NOT_RECOGNIZED_SUCCESS',
+      );
+      /**If not authorized user then exist the app */
+      // if (n1 === 0) {
+      //   RNExitApp.exitApp();
+      //   //Platform.OS === STRINGS.IOS ? authenticateDevice() : BackHandler.exitApp();
+      // }
+    });
+    /**Remove the NativeEventEmitter listener */
+    return function cleanup() {
+      eventEmitter.removeAllListeners('SecurityAuth');
+    };
+    // }
   }
   const {isLoading, DataResponse, userResponseError} = useSelector(
     (state: RootState) => state.home,

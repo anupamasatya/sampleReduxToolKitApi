@@ -13,6 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2BDA5E319D7F50E2DD706A70 /* libPods-reduxSliceSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2F9A8A528E05A1A949779 /* libPods-reduxSliceSample.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		96A0B2B027982DB000BC2CCB /* SecurityModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A0B2AE27982DB000BC2CCB /* SecurityModule.m */; };
 		F539AF47789155B6EAE30A72 /* libPods-reduxSliceSample-reduxSliceSampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E4EB37E87620A6FD913F9E8 /* libPods-reduxSliceSample-reduxSliceSampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = reduxSliceSample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		872676C25B5692AEDE3BC7D1 /* Pods-reduxSliceSample-reduxSliceSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reduxSliceSample-reduxSliceSampleTests.release.xcconfig"; path = "Target Support Files/Pods-reduxSliceSample-reduxSliceSampleTests/Pods-reduxSliceSample-reduxSliceSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		95001E7573BBF50155B58E64 /* Pods-reduxSliceSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reduxSliceSample.release.xcconfig"; path = "Target Support Files/Pods-reduxSliceSample/Pods-reduxSliceSample.release.xcconfig"; sourceTree = "<group>"; };
+		96A0B2AE27982DB000BC2CCB /* SecurityModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityModule.m; sourceTree = "<group>"; };
+		96A0B2AF27982DB000BC2CCB /* SecurityModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityModule.h; sourceTree = "<group>"; };
 		D8A2F9A8A528E05A1A949779 /* libPods-reduxSliceSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reduxSliceSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -87,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				96A0B2AF27982DB000BC2CCB /* SecurityModule.h */,
+				96A0B2AE27982DB000BC2CCB /* SecurityModule.m */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -145,7 +150,6 @@
 				246572CFB05465E766B512BF /* Pods-reduxSliceSample-reduxSliceSampleTests.debug.xcconfig */,
 				872676C25B5692AEDE3BC7D1 /* Pods-reduxSliceSample-reduxSliceSampleTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -413,6 +417,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				96A0B2B027982DB000BC2CCB /* SecurityModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
